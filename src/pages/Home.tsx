@@ -1,0 +1,616 @@
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Code, Smartphone, PenTool, LayoutTemplate, LineChart, Users, CheckCircle2 } from 'lucide-react';
+import { CtaSection } from '../components/CtaSection';
+import { ConcentricRipple } from '../components/ConcentricRipple';
+
+function useTypewriter(text: string, speed = 35, startDelay = 500) {
+  const [displayed, setDisplayed] = useState('');
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    let timeoutId: number;
+    let intervalId: number;
+    let currentIndex = 0;
+
+    timeoutId = setTimeout(() => {
+      intervalId = setInterval(() => {
+        if (currentIndex < text.length) {
+          setDisplayed(text.substring(0, currentIndex + 1));
+          currentIndex++;
+        } else {
+          clearInterval(intervalId);
+          setDone(true);
+        }
+      }, speed);
+    }, startDelay);
+
+    return () => {
+      clearTimeout(timeoutId);
+      clearInterval(intervalId);
+    };
+  }, [text, speed, startDelay]);
+
+  return { displayed, done };
+}
+
+export default function Home() {
+  const [showPills, setShowPills] = useState(false);
+  const typewriter = useTypewriter("Custom Web & App Development for Modern Businesses");
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowPills(true), 350);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const services = [
+    { 
+      title: "Web Development", 
+      icon: <Code size={24} className="text-[#EF4444]" />, 
+      desc: "High-performance websites and custom web applications built for modern businesses." 
+    },
+    { 
+      title: "App Development", 
+      icon: <Smartphone size={24} className="text-[#EF4444]" />, 
+      desc: "Engaging, scalable iOS and Android applications with native-level performance." 
+    },
+    { 
+      title: "Graphic & UI/UX Design", 
+      icon: <PenTool size={24} className="text-[#EF4444]" />, 
+      desc: "Striking posters, branding identities, and human-centered digital experiences." 
+    },
+    { 
+      title: "ERP Development", 
+      icon: <LayoutTemplate size={24} className="text-[#EF4444]" />, 
+      desc: "Custom Enterprise Resource Planning architectures to streamline your operations." 
+    },
+    { 
+      title: "Business Strategy", 
+      icon: <LineChart size={24} className="text-[#EF4444]" />, 
+      desc: "Data-driven marketing, SEO optimization, and holistic strategic growth planning." 
+    },
+    { 
+      title: "HR Recruiting Services", 
+      icon: <Users size={24} className="text-[#EF4444]" />, 
+      desc: "Specialized technical talent acquisition to build high-impact, cohesive teams." 
+    }
+  ];
+
+  const processSteps = [
+    { num: "01", title: "Discover", desc: "Understanding your vision, business targets, and user needs." },
+    { num: "02", title: "Plan", desc: "Architecting the technical blueprint and product roadmap." },
+    { num: "03", title: "Design", desc: "Crafting intuitive, human-centered UI/UX prototypes." },
+    { num: "04", title: "Develop", desc: "Engineering resilient, high-speed code with modern frameworks." },
+    { num: "05", title: "Test", desc: "Rigorous quality assurance, cross-device testing, and security." },
+    { num: "06", title: "Launch", desc: "Seamless deployment, scaling, and ongoing performance support." },
+  ];
+
+  return (
+    <div className="w-full bg-white">
+      {/* 
+        ========================================================================
+        HERO SECTION (Scoped ONLY to this container)
+        ========================================================================
+      */}
+      <section className="relative min-h-[90vh] md:min-h-screen flex flex-col justify-center overflow-hidden bg-[#0B0B0F] px-6 sm:px-10 py-24">
+        {/* Scoped Hero Visual Environment (Prepared for Vectors) */}
+        <div 
+          className="absolute inset-0 z-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse 80% 70% at 75% 35%, #7a0f1b 0%, #42070d 40%, #170205 75%, #050001 100%)'
+          }}
+        >
+          {/* Ambient Concentric Ripple in Hero backdrop */}
+          <div className="absolute right-0 bottom-0 w-96 h-96 pointer-events-none opacity-30 sm:opacity-40">
+            <ConcentricRipple 
+              id="hero-ambient" 
+              variant="dark-ambient" 
+              placement="bottom-right" 
+            />
+          </div>
+          {/* Subtle Technical Outlined Ripple Arc in Hero top-right */}
+          <div className="absolute right-0 top-0 w-80 h-80 pointer-events-none opacity-20 sm:opacity-30">
+            <ConcentricRipple 
+              id="hero-outline" 
+              variant="outline-red" 
+              placement="top-right" 
+            />
+          </div>
+        </div>
+
+        {/* Hero Content & Vector Illustration (2-Column Responsive Layout) */}
+        <div className="max-w-[1200px] mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center mt-12 md:mt-0">
+          {/* Left Column: Hero Text */}
+          <div className="lg:col-span-7 xl:col-span-7 max-w-[660px]">
+            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#EF4444] mb-4">
+              <span>Ideas &rarr; Code &rarr; Real Solutions</span>
+            </div>
+
+            <h1 
+              className="font-bold tracking-tight text-3xl sm:text-5xl lg:text-6xl mb-6 leading-[1.12]"
+              style={{ fontFamily: 'var(--font-display)', color: '#FFFFFF' }}
+            >
+              <span style={{ color: '#FFFFFF' }}>Build Your Vision with Modern</span>{' '}
+              <span className="text-[#EF4444]">Technology</span>
+            </h1>
+
+            <p className="text-white/80 text-base sm:text-lg lg:text-xl font-normal mb-8 leading-relaxed min-h-[56px]">
+              {typewriter.displayed}
+              {!typewriter.done && (
+                <span className="inline-block w-[2px] h-[1.1em] bg-[#EF4444] align-middle ml-1 animate-pulse" />
+              )}
+            </p>
+
+            <div 
+              className="flex flex-wrap items-center gap-4 transition-all duration-500"
+              style={{ 
+                opacity: showPills ? 1 : 0, 
+                transform: showPills ? 'translateY(0)' : 'translateY(12px)' 
+              }}
+            >
+              {/* Primary CTA (design.md #38) */}
+              <Link 
+                to="/contact" 
+                className="inline-flex items-center justify-center bg-[#EF4444] hover:bg-[#D93636] text-white font-medium text-sm sm:text-base px-7 py-3 rounded-full transition-all duration-200"
+              >
+                Start a Project
+              </Link>
+
+              {/* Outline CTA (design.md #38) */}
+              <Link 
+                to="/services" 
+                className="inline-flex items-center justify-center bg-transparent border border-white text-white hover:bg-white hover:text-[#0B0B0F] font-medium text-sm sm:text-base px-6 py-3 rounded-full transition-all duration-200 gap-2"
+              >
+                Explore Services <ArrowRight size={15} />
+              </Link>
+            </div>
+          </div>
+
+          {/* Right Column: Hero SVG Illustration */}
+          <div className="lg:col-span-5 xl:col-span-5 flex items-center justify-center relative">
+
+            <div className="w-full max-w-[420px] sm:max-w-[500px] lg:max-w-[560px] relative group">
+
+              {/* ── Ambient red glow behind image ── */}
+              <div className="animate-glow absolute inset-0 rounded-full bg-[#EF4444]/20 blur-3xl pointer-events-none -z-10 scale-110" />
+
+              {/* ── Main illustration ── */}
+              <img
+                src="/Hero section.svg"
+                alt="Tekloria Digital Solutions Ecosystem"
+                className="w-full h-auto object-contain select-none pointer-events-none relative z-10"
+              />
+
+              {/* ── Electric Shock SVG overlay ─────────────────────────────────
+                  Three independent lightning bolts drawn at different corners /
+                  angles with staggered animation delays so they fire at
+                  non-uniform intervals, mimicking real electricity crackling.
+              ──────────────────────────────────────────────────────────────── */}
+              <svg
+                className="absolute inset-0 w-full h-full pointer-events-none z-20"
+                viewBox="0 0 560 560"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                {/* Bolt 1 — top-left arc down to center-right */}
+                <g className="animate-electric-1">
+                  {/* Glow halo */}
+                  <path
+                    d="M 80 60 L 130 140 L 105 145 L 165 240 L 140 248 L 210 340"
+                    stroke="#EF4444"
+                    strokeWidth="8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    opacity="0.18"
+                    filter="url(#bolt-blur)"
+                  />
+                  {/* Sharp bolt */}
+                  <path
+                    className="animate-bolt-1"
+                    d="M 80 60 L 130 140 L 105 145 L 165 240 L 140 248 L 210 340"
+                    stroke="#FF6B6B"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  {/* Bright core */}
+                  <path
+                    className="animate-bolt-1"
+                    d="M 80 60 L 130 140 L 105 145 L 165 240 L 140 248 L 210 340"
+                    stroke="white"
+                    strokeWidth="0.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    opacity="0.9"
+                  />
+                  {/* Spark tips */}
+                  <circle cx="80" cy="60" r="3" fill="#FF6B6B" className="animate-electric-1" />
+                  <circle cx="210" cy="340" r="3" fill="#FF6B6B" className="animate-electric-1" />
+                </g>
+
+                {/* Bolt 2 — top-right arc down to center-left */}
+                <g className="animate-electric-2">
+                  <path
+                    d="M 480 80 L 420 170 L 448 178 L 380 270 L 408 280 L 340 380"
+                    stroke="#EF4444"
+                    strokeWidth="8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    opacity="0.18"
+                    filter="url(#bolt-blur)"
+                  />
+                  <path
+                    className="animate-bolt-2"
+                    d="M 480 80 L 420 170 L 448 178 L 380 270 L 408 280 L 340 380"
+                    stroke="#FF6B6B"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    className="animate-bolt-2"
+                    d="M 480 80 L 420 170 L 448 178 L 380 270 L 408 280 L 340 380"
+                    stroke="white"
+                    strokeWidth="0.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    opacity="0.9"
+                  />
+                  <circle cx="480" cy="80" r="3" fill="#FF6B6B" className="animate-electric-2" />
+                  <circle cx="340" cy="380" r="3" fill="#FF6B6B" className="animate-electric-2" />
+                </g>
+
+                {/* Bolt 3 — short bottom-center burst */}
+                <g className="animate-electric-3">
+                  <path
+                    d="M 270 420 L 310 470 L 288 476 L 320 520"
+                    stroke="#EF4444"
+                    strokeWidth="6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    opacity="0.18"
+                    filter="url(#bolt-blur)"
+                  />
+                  <path
+                    className="animate-bolt-3"
+                    d="M 270 420 L 310 470 L 288 476 L 320 520"
+                    stroke="#FF6B6B"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    className="animate-bolt-3"
+                    d="M 270 420 L 310 470 L 288 476 L 320 520"
+                    stroke="white"
+                    strokeWidth="0.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    opacity="0.9"
+                  />
+                  <circle cx="270" cy="420" r="2.5" fill="#FF6B6B" className="animate-electric-3" />
+                  <circle cx="320" cy="520" r="2.5" fill="#FF6B6B" className="animate-electric-3" />
+                </g>
+
+                {/* Shared blur filter for the glow halos */}
+                <defs>
+                  <filter id="bolt-blur" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="6" />
+                  </filter>
+                </defs>
+              </svg>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* 
+        ========================================================================
+        SERVICES SECTION (Background: White #FFFFFF - design.md #41, #42, #55)
+        ========================================================================
+      */}
+      <section className="py-12 sm:py-14 px-6 sm:px-10 max-w-[1200px] mx-auto bg-white">
+        <div className="mb-8">
+          <div className="text-xs uppercase tracking-wider text-[#EF4444] font-semibold mb-1.5">Our Capabilities</div>
+          <h2 className="text-2xl sm:text-3xl font-semibold text-[#0B0B0F] tracking-tight mb-2.5" style={{ fontFamily: 'var(--font-display)' }}>
+            Core Digital Solutions
+          </h2>
+          <p className="text-[#475569] text-sm sm:text-base max-w-2xl leading-relaxed">
+            We provide comprehensive, end-to-end digital engineering and design services to scale modern businesses.
+          </p>
+        </div>
+
+        {/* 6-Card Grid (design.md #31, #32, #41, #42) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {services.map((svc, i) => (
+            <div 
+              key={i} 
+              className="relative overflow-hidden p-6 bg-white border border-[#E5E7EB] rounded-[6px] transition-all duration-300 hover:border-[#EF4444] hover:shadow-sm flex flex-col justify-between group"
+            >
+              {/* Subtle Concentric Ripple Corner Accent on Hover */}
+              <div className="absolute -right-8 -bottom-8 w-32 h-32 pointer-events-none opacity-0 group-hover:opacity-75 transition-all duration-300 transform group-hover:scale-110">
+                <ConcentricRipple 
+                  id={`home-svc-${i}`} 
+                  variant="soft-rose" 
+                  placement="bottom-right" 
+                />
+              </div>
+
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-[6px] bg-[#F8FAFC] flex items-center justify-center border border-[#E5E7EB] shrink-0">
+                    {svc.icon}
+                  </div>
+                  <h3 className="text-lg font-semibold text-[#0B0B0F]">
+                    {svc.title}
+                  </h3>
+                </div>
+                <p className="text-[#475569] text-sm leading-relaxed mb-4">
+                  {svc.desc}
+                </p>
+              </div>
+              <Link 
+                to="/services" 
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0B0B0F] group-hover:text-[#EF4444] transition-colors relative z-10"
+              >
+                Explore service <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 
+        ========================================================================
+        WHY CHOOSE TEKLORIA (Background: Soft Line #F8FAFC - design.md #55)
+        ========================================================================
+      */}
+      <section className="relative overflow-hidden py-12 sm:py-14 px-6 sm:px-10 bg-[#F8FAFC] border-y border-[#E5E7EB]">
+        {/* Subtle Architectural Neutral Ripple Watermark */}
+        <div className="absolute -right-16 -bottom-16 w-96 h-96 pointer-events-none opacity-40">
+          <ConcentricRipple 
+            id="why-choose-ripple" 
+            variant="neutral-light" 
+            placement="bottom-right" 
+          />
+        </div>
+
+        <div className="max-w-[1200px] mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <div className="lg:col-span-5">
+              <div className="text-xs uppercase tracking-wider text-[#EF4444] font-semibold mb-1.5">Why Tekloria</div>
+              <h2 className="text-2xl sm:text-3xl font-semibold text-[#0B0B0F] tracking-tight mb-3" style={{ fontFamily: 'var(--font-display)' }}>
+                Engineering Growth, Not Just Software.
+              </h2>
+              <p className="text-[#475569] text-sm sm:text-base leading-relaxed mb-5">
+                We bridge the gap between creative visual design and enterprise-level full-stack engineering, delivering real business outcomes.
+              </p>
+              <div className="space-y-2.5 text-sm text-[#475569]">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 size={15} className="text-[#EF4444]" />
+                  <span>Fast Delivery without Technical Debt</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 size={15} className="text-[#EF4444]" />
+                  <span>Clean Code Architecture & Modern Tech Stacks</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 size={15} className="text-[#EF4444]" />
+                  <span>Transparent Communication & Dedicated Support</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-5 bg-white border border-[#E5E7EB] rounded-[6px]">
+                <h4 className="text-sm font-semibold text-[#0B0B0F] mb-1.5">Innovative Strategies</h4>
+                <p className="text-[#475569] text-xs sm:text-sm leading-relaxed">
+                  Tailored solutions engineered specifically for your unique market positioning and user engagement targets.
+                </p>
+              </div>
+
+              <div className="p-5 bg-white border border-[#E5E7EB] rounded-[6px]">
+                <h4 className="text-sm font-semibold text-[#0B0B0F] mb-1.5">Multidisciplinary Team</h4>
+                <p className="text-[#475569] text-xs sm:text-sm leading-relaxed">
+                  From UI/UX creatives to cloud architects, our team works cohesively across every touchpoint.
+                </p>
+              </div>
+
+              <div className="p-5 bg-white border border-[#E5E7EB] rounded-[6px]">
+                <h4 className="text-sm font-semibold text-[#0B0B0F] mb-1.5">End-to-End Delivery</h4>
+                <p className="text-[#475569] text-xs sm:text-sm leading-relaxed">
+                  From initial concept wireframing to production deployment and maintenance, we handle the entire product lifecycle.
+                </p>
+              </div>
+
+              <div className="p-5 bg-white border border-[#E5E7EB] rounded-[6px]">
+                <h4 className="text-sm font-semibold text-[#0B0B0F] mb-1.5">High Security & Speed</h4>
+                <p className="text-[#475569] text-xs sm:text-sm leading-relaxed">
+                  Optimized for instant page loads, robust API data protection, and enterprise-grade scalability.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 
+        ========================================================================
+        PROCESS SECTION (Background: White #FFFFFF - design.md #46, #55)
+        ========================================================================
+      */}
+      <section className="py-12 sm:py-14 px-6 sm:px-10 max-w-[1200px] mx-auto bg-white">
+        <div className="mb-8 text-center max-w-xl mx-auto">
+          <div className="text-xs uppercase tracking-wider text-[#EF4444] font-semibold mb-1.5">Our Process</div>
+          <h2 className="text-2xl sm:text-3xl font-semibold text-[#0B0B0F] tracking-tight mb-2.5" style={{ fontFamily: 'var(--font-display)' }}>
+            The Development Journey
+          </h2>
+          <p className="text-[#475569] text-sm leading-relaxed">
+            A structured, transparent workflow designed to guarantee precision and speed from day one.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {processSteps.map((step, idx) => (
+            <div key={idx} className="relative overflow-hidden p-6 border border-[#E5E7EB] rounded-[6px] bg-[#FFFFFF] hover:border-[#EF4444] transition-all duration-200 group">
+              {/* Mini-target ripple as a subtle corner watermark */}
+              <div className="absolute -right-3 -top-3 w-10 h-10 opacity-20 group-hover:opacity-80 group-hover:scale-110 transition-all duration-300 pointer-events-none">
+                <ConcentricRipple variant="mini-target" id={`process-step-${idx}`} size="sm" />
+              </div>
+
+              {/* Number + Title inline */}
+              <div className="flex items-center gap-2.5 mb-3">
+                <span className="text-xl font-bold text-[#EF4444] leading-none shrink-0" style={{ fontFamily: 'var(--font-display)' }}>
+                  {step.num}
+                </span>
+                <h3 className="text-base font-semibold text-[#0B0B0F] leading-snug">{step.title}</h3>
+              </div>
+              <p className="text-[#475569] text-xs sm:text-sm leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 
+        ========================================================================
+        TESTIMONIALS / SUPPORTING (Background: Sand #EDE9E3 - design.md #48, #55)
+        ========================================================================
+      */}
+      <section className="py-12 sm:py-14 px-6 sm:px-10 bg-[#EDE9E3]">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="mb-8">
+            <div className="text-xs uppercase tracking-wider text-[#EF4444] font-semibold mb-1.5">Testimonials</div>
+            <h2 className="text-2xl sm:text-3xl font-semibold text-[#0B0B0F] tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
+              Trusted by Ambitious Teams
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {/* Testimonial 1 */}
+            <div className="relative overflow-hidden p-6 bg-white rounded-[6px] border border-[#E5E7EB] flex flex-col justify-between group hover:border-[#EF4444]/40 transition-all duration-300">
+              <div className="absolute -right-6 -bottom-6 w-28 h-28 pointer-events-none opacity-0 group-hover:opacity-45 transition-opacity duration-300">
+                <ConcentricRipple id="test-1" variant="neutral-sand" placement="bottom-right" />
+              </div>
+              <div className="relative z-10 flex items-center justify-between mb-4">
+                <div className="flex gap-1 text-[#FBBC05]">
+                  {/* 5 Stars */}
+                  {[1,2,3,4,5].map(i => (
+                    <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                {/* Google G Logo */}
+                <svg className="w-5 h-5 shrink-0" viewBox="0 0 48 48">
+                  <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+                  <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+                  <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+                  <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+                </svg>
+              </div>
+              <p className="text-[#475569] text-xs sm:text-sm leading-relaxed mb-6 relative z-10">
+                "Tekloria's team was amazing to work with. They delivered our custom web platform way ahead of schedule and the UI is incredibly smooth. Highly recommend them for any custom development."
+              </p>
+              <div className="relative z-10 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-[#EF4444] text-white flex items-center justify-center font-bold text-sm shrink-0">
+                  R
+                </div>
+                <div>
+                  <div className="font-semibold text-sm text-[#0B0B0F]">Rahul Sharma</div>
+                  <div className="text-[11px] text-[#475569]">2 weeks ago</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial 2 */}
+            <div className="relative overflow-hidden p-6 bg-white rounded-[6px] border border-[#E5E7EB] flex flex-col justify-between group hover:border-[#EF4444]/40 transition-all duration-300">
+              <div className="absolute -right-6 -bottom-6 w-28 h-28 pointer-events-none opacity-0 group-hover:opacity-45 transition-opacity duration-300">
+                <ConcentricRipple id="test-2" variant="neutral-sand" placement="bottom-right" />
+              </div>
+              <div className="relative z-10 flex items-center justify-between mb-4">
+                <div className="flex gap-1 text-[#FBBC05]">
+                  {[1,2,3,4,5].map(i => (
+                    <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <svg className="w-5 h-5 shrink-0" viewBox="0 0 48 48">
+                  <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+                  <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+                  <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+                  <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+                </svg>
+              </div>
+              <p className="text-[#475569] text-xs sm:text-sm leading-relaxed mb-6 relative z-10">
+                "We hired them for a complete rebrand and app development. The entire process was so transparent and the final product exceeded all our expectations. Best tech team in Hyderabad!"
+              </p>
+              <div className="relative z-10 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-[#10B981] text-white flex items-center justify-center font-bold text-sm shrink-0">
+                  P
+                </div>
+                <div>
+                  <div className="font-semibold text-sm text-[#0B0B0F]">Priya Desai</div>
+                  <div className="text-[11px] text-[#475569]">1 month ago</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial 3 */}
+            <div className="relative overflow-hidden p-6 bg-white rounded-[6px] border border-[#E5E7EB] flex flex-col justify-between group hover:border-[#EF4444]/40 transition-all duration-300">
+              <div className="absolute -right-6 -bottom-6 w-28 h-28 pointer-events-none opacity-0 group-hover:opacity-45 transition-opacity duration-300">
+                <ConcentricRipple id="test-3" variant="neutral-sand" placement="bottom-right" />
+              </div>
+              <div className="relative z-10 flex items-center justify-between mb-4">
+                <div className="flex gap-1 text-[#FBBC05]">
+                  {[1,2,3,4,5].map(i => (
+                    <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <svg className="w-5 h-5 shrink-0" viewBox="0 0 48 48">
+                  <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+                  <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+                  <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+                  <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+                </svg>
+              </div>
+              <p className="text-[#475569] text-xs sm:text-sm leading-relaxed mb-6 relative z-10">
+                "Their custom ERP solution completely transformed how we manage our inventory. Very professional, responsive, and they actually understand business logic, not just coding."
+              </p>
+              <div className="relative z-10 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-[#3B82F6] text-white flex items-center justify-center font-bold text-sm shrink-0">
+                  V
+                </div>
+                <div>
+                  <div className="font-semibold text-sm text-[#0B0B0F]">Vikram Reddy</div>
+                  <div className="text-[11px] text-[#475569]">3 months ago</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 
+        ========================================================================
+        FINAL CTA SECTION (With Layered Concentric Rings in Tekloria Brand Colors)
+        ========================================================================
+      */}
+      <CtaSection 
+        id="home"
+        badge="Next Steps"
+        title="Ready to scale your business?"
+        description="Let's discuss your product goals, engineering roadmap, and build your next digital solution together."
+        primaryButtonText="Start a Project"
+        primaryButtonLink="/contact"
+        secondaryButtonText="Explore Services"
+        secondaryButtonLink="/services"
+      />
+    </div>
+  );
+}

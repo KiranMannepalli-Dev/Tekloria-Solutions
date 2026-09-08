@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --color-primary-black: #0B0B0F;
+  --color-white: #FFFFFF;
+
+  --color-red: #EF4444;
+  --color-dark-red: #7F0F16;
+
+  --color-charcoal: #1F2937;
+  --color-slate: #475569;
+
+  --color-light-gray: #E5E7EB;
+  --color-soft-line: #F8FAFC;
+
+  --color-beige: #F7F5F5;
+  --color-sand: #EDE9E3;
+
+  --color-soft-green: #E6F4EA;
+  --color-soft-red: #FDECEC;
+  --color-sky-gray: #EFF5F9;
+
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Poppins', 'Inter', system-ui, -apple-system, sans-serif;
+
+  --radius-card: 6px;
+  --radius-button: 9999px;
+}
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Poppins', 'Inter', system-ui, -apple-system, sans-serif;
+
+  --color-primary-black: #0B0B0F;
+  --color-white: #FFFFFF;
+  --color-brand-red: #EF4444;
+  --color-dark-red: #7F0F16;
+  --color-charcoal: #1F2937;
+  --color-slate: #475569;
+  --color-light-gray: #E5E7EB;
+  --color-soft-line: #F8FAFC;
+  --color-beige: #F7F5F5;
+  --color-sand: #EDE9E3;
+  --color-soft-green: #E6F4EA;
+  --color-soft-red: #FDECEC;
+  --color-sky-gray: #EFF5F9;
+}
+
+body {
+  font-family: var(--font-sans);
+  margin: 0;
+  background-color: var(--color-white);
+  color: var(--color-slate);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2 {
+  font-family: var(--font-display);
+}
+
+h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-reverse 35s linear infinite;
+}
+
+.animate-marquee:hover,
+.animate-marquee-reverse:hover {
+  animation-play-state: paused;
+}
+
+/* ── Electric Shock / Lightning animations ─────────────────────────────── */
+@keyframes electric-flicker {
+  0%   { opacity: 0;   transform: scaleX(1)    scaleY(1); }
+  5%   { opacity: 1;   transform: scaleX(1.04) scaleY(0.97); }
+  10%  { opacity: 0.3; transform: scaleX(0.98) scaleY(1.03); }
+  15%  { opacity: 1;   transform: scaleX(1.02) scaleY(0.99); }
+  20%  { opacity: 0;   transform: scaleX(1)    scaleY(1); }
+  100% { opacity: 0;   transform: scaleX(1)    scaleY(1); }
+}
+
+@keyframes bolt-draw {
+  0%   { stroke-dashoffset: 200; opacity: 0; }
+  8%   { stroke-dashoffset: 0;   opacity: 1; }
+  18%  { stroke-dashoffset: 0;   opacity: 0.6; }
+  25%  { stroke-dashoffset: 200; opacity: 0; }
+  100% { stroke-dashoffset: 200; opacity: 0; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50%       { opacity: 0.55; transform: scale(1.15); }
+}
+
+.animate-electric-1 {
+  animation: electric-flicker 3.2s ease-in-out infinite;
+}
+.animate-electric-2 {
+  animation: electric-flicker 3.2s ease-in-out 1.1s infinite;
+}
+.animate-electric-3 {
+  animation: electric-flicker 3.2s ease-in-out 0.55s infinite;
+}
+.animate-bolt-1 {
+  stroke-dasharray: 200;
+  animation: bolt-draw 3.2s ease-in-out infinite;
+}
+.animate-bolt-2 {
+  stroke-dasharray: 200;
+  animation: bolt-draw 3.2s ease-in-out 1.1s infinite;
+}
+.animate-bolt-3 {
+  stroke-dasharray: 200;
+  animation: bolt-draw 3.2s ease-in-out 1.9s infinite;
+}
+.animate-glow {
+  animation: glow-pulse 2.4s ease-in-out infinite;
+}
