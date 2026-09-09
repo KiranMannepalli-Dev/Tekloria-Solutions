@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Code, Smartphone, PenTool, LayoutTemplate, LineChart, Users, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { CtaSection } from '../components/CtaSection';
 import { ConcentricRipple } from '../components/ConcentricRipple';
+import CardModal from '../components/CardModal';
 import { 
   WebIllustration, 
   AppIllustration, 
@@ -58,6 +60,8 @@ export default function Services() {
     }
   ];
 
+  const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null);
+
   return (
     <div className="w-full bg-white text-[#0B0B0F]">
       {/* 
@@ -95,48 +99,55 @@ export default function Services() {
         ========================================================================
       */}
       <section className="py-12 sm:py-14 px-6 sm:px-10 max-w-[1200px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-3 sm:gap-6">
           {services.map((svc, i) => (
             <div 
               key={i} 
-              className="relative overflow-hidden p-6 sm:p-8 bg-white border border-[#E5E7EB] rounded-[6px] hover:border-[#EF4444] transition-all duration-300 flex flex-col justify-between group hover:shadow-sm min-h-[350px]"
+              onClick={() => setSelectedService(svc)}
+              className="relative overflow-hidden p-4 sm:p-8 bg-white border border-[#E5E7EB] rounded-[6px] hover:border-[#EF4444] transition-all duration-300 flex flex-col justify-between group hover:shadow-sm min-h-0 sm:min-h-[350px] cursor-pointer"
             >
 
               {/* Vector / Media Illustration (Fitted to card blob area) */}
               {svc.illustration && (
-                <div className="absolute -right-2 -bottom-2 sm:-right-4 sm:-bottom-4 w-44 h-44 sm:w-56 sm:h-56 lg:w-64 lg:h-64 pointer-events-none z-0 transition-all duration-300 transform group-hover:scale-105 group-hover:-translate-y-1 drop-shadow-sm flex items-end justify-end">
+                <div className="hidden sm:flex absolute -right-2 -bottom-2 sm:-right-4 sm:-bottom-4 w-44 h-44 sm:w-56 sm:h-56 lg:w-64 lg:h-64 pointer-events-none z-0 transition-all duration-300 transform group-hover:scale-105 group-hover:-translate-y-1 drop-shadow-sm items-end justify-end opacity-50 sm:opacity-100">
                   {svc.illustration}
                 </div>
               )}
 
-              <div className="relative z-10 max-w-[76%] sm:max-w-[65%]">
-                <div className="flex items-center gap-3.5 mb-3.5">
-                  <div className="w-10 h-10 rounded-[6px] bg-[#F8FAFC] border border-[#E5E7EB] flex items-center justify-center shrink-0">
+              <div className="relative z-10 max-w-[100%] sm:max-w-[65%]">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3.5 mb-2 sm:mb-3.5">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-[6px] bg-[#F8FAFC] border border-[#E5E7EB] flex items-center justify-center shrink-0 [&>svg]:w-4 [&>svg]:h-4 sm:[&>svg]:w-6 sm:[&>svg]:h-6">
                     {svc.icon}
                   </div>
-                  <h3 className="text-xl font-semibold text-[#0B0B0F]">
+                  <h3 className="text-sm sm:text-xl font-semibold text-[#0B0B0F] leading-tight">
                     {svc.title}
                   </h3>
                 </div>
-                <p className="text-[#475569] text-sm leading-relaxed mb-5">
+                <p className="text-[#475569] text-xs sm:text-sm leading-relaxed mb-3 sm:mb-5 line-clamp-3 sm:line-clamp-none">
                   {svc.desc}
                 </p>
-                <div className="space-y-2 mb-6">
+                <div className="hidden sm:block space-y-1 sm:space-y-2 mb-4 sm:mb-6">
                   {svc.features.map((feat, fIdx) => (
-                    <div key={fIdx} className="flex items-center gap-2 text-xs sm:text-sm text-[#475569]">
-                      <CheckCircle2 size={14} className="text-[#EF4444] shrink-0" />
-                      <span>{feat}</span>
+                    <div key={fIdx} className="flex items-center gap-1.5 sm:gap-2 text-[9px] sm:text-sm text-[#475569]">
+                      <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#EF4444] shrink-0" />
+                      <span className="truncate sm:whitespace-normal">{feat}</span>
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="pt-2 relative z-10">
+              <div className="pt-1 sm:pt-2 relative z-10 mt-auto">
                 <Link 
                   to="/contact" 
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0B0B0F] hover:text-[#EF4444] transition-colors"
+                  onClick={(e) => e.stopPropagation()}
+                  className="inline-flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-xs font-semibold text-[#0B0B0F] hover:text-[#EF4444] transition-colors uppercase sm:normal-case tracking-wider sm:tracking-normal"
                 >
-                  Request Consultation <ArrowRight size={13} />
+                  <span className="sm:hidden">Consult</span>
+                  <span className="hidden sm:inline">Request Consultation</span>
+                  <ArrowRight className="w-3 h-3 sm:w-[13px] sm:h-[13px]" />
                 </Link>
+                <div className="sm:hidden text-[9px] text-[#475569] mt-3 border-t border-[#E5E7EB]/50 pt-2 text-center uppercase tracking-wider font-medium opacity-60">
+                  Tap to expand
+                </div>
               </div>
             </div>
           ))}
@@ -204,6 +215,17 @@ export default function Services() {
         primaryButtonText="Start a Project"
         primaryButtonLink="/contact"
       />
+
+      {/* Mobile Card Modal Overlay */}
+      {selectedService && (
+        <CardModal
+          title={selectedService.title}
+          description={selectedService.desc}
+          icon={selectedService.icon}
+          features={selectedService.features}
+          onClose={() => setSelectedService(null)}
+        />
+      )}
     </div>
   );
 }

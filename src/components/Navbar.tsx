@@ -93,38 +93,31 @@ export default function Navbar() {
           <span className={`w-6 h-[2px] rounded-full transition-all duration-300 ${isDarkHeroNavbar && !isMobileNavOpen ? 'bg-white' : 'bg-[#0B0B0F]'} ${isMobileNavOpen ? 'opacity-0' : ''}`} />
           <span className={`w-6 h-[2px] rounded-full transition-all duration-300 ${isDarkHeroNavbar && !isMobileNavOpen ? 'bg-white' : 'bg-[#0B0B0F]'} ${isMobileNavOpen ? '-rotate-45 -translate-y-[8px] !bg-white' : ''}`} />
         </button>
-      </nav>
-
-      {/* Mobile Navigation Drawer */}
-      <div
-        className={`fixed inset-0 bg-[#0B0B0F] text-white z-[55] flex flex-col justify-center px-8 gap-8 md:hidden transition-all duration-300 ${isMobileNavOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-          }`}
-      >
-        <div className="flex flex-col gap-6 text-2xl font-medium">
-          <Link to="/" onClick={() => setIsMobileNavOpen(false)} className={location.pathname === '/' ? 'text-[#EF4444]' : 'text-white'}>
-            Home
-          </Link>
-          {links.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              onClick={() => setIsMobileNavOpen(false)}
-              className={location.pathname === link.path ? 'text-[#EF4444]' : 'text-white'}
-            >
-              {link.name}
-            </Link>
-          ))}
-          <div className="pt-2">
-            <Link
-              to="/contact"
-              onClick={() => setIsMobileNavOpen(false)}
-              className="inline-flex items-center justify-center w-full bg-[#EF4444] text-white text-base font-medium py-3 rounded-full"
-            >
-              Start a Project
-            </Link>
+        {/* Mobile Navigation Dropdown */}
+        <div
+          className={`absolute top-full right-6 sm:right-10 mt-2 w-48 bg-[#0B0B0F] border border-white/10 text-white rounded-2xl z-[55] md:hidden transition-all duration-200 shadow-2xl origin-top-right ${isMobileNavOpen ? 'scale-100 opacity-100 pointer-events-auto' : 'scale-95 opacity-0 pointer-events-none'
+            }`}
+        >
+          <div className="flex flex-col py-2 text-base font-medium text-left">
+            {links.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                onClick={() => setIsMobileNavOpen(false)}
+                className={`px-5 py-3 transition-colors ${location.pathname === link.path ? 'text-[#EF4444] bg-white/5' : 'text-white hover:text-[#EF4444] hover:bg-white/5'}`}
+              >
+                {link.name}
+              </Link>
+            ))}
           </div>
         </div>
-      </div>
+      </nav>
+
+      {/* Invisible overlay to close dropdown when clicking outside */}
+      <div
+        className={`fixed inset-0 z-[40] md:hidden ${isMobileNavOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
+        onClick={() => setIsMobileNavOpen(false)}
+      />
     </>
   );
 }

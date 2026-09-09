@@ -176,24 +176,24 @@ export default function About() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {values.map((val, idx) => (
               <div 
                 key={idx} 
-                className="relative overflow-hidden p-6 bg-white border border-[#E5E7EB] rounded-[6px] flex flex-col justify-between group hover:border-[#EF4444] transition-all duration-300 hover:shadow-sm"
+                className="relative overflow-hidden p-4 sm:p-6 bg-white border border-[#E5E7EB] rounded-[6px] flex flex-col justify-between group hover:border-[#EF4444] transition-all duration-300 hover:shadow-sm"
               >
                 {/* Subtle Hover Micro-Ripple Accent */}
                 <div className="absolute -right-6 -bottom-6 w-24 h-24 pointer-events-none opacity-0 group-hover:opacity-60 transition-all duration-300 transform group-hover:scale-105">
                   <ConcentricRipple id={`val-ripple-${idx}`} variant="soft-rose" placement="bottom-right" />
                 </div>
 
-                <div className="relative z-10 flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-[6px] bg-[#F8FAFC] border border-[#E5E7EB] flex items-center justify-center shrink-0">
+                <div className="relative z-10 flex flex-col sm:flex-row items-start gap-2 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-[6px] bg-[#F8FAFC] border border-[#E5E7EB] flex items-center justify-center shrink-0 [&>svg]:w-4 [&>svg]:h-4 sm:[&>svg]:w-5 sm:[&>svg]:h-5">
                     {val.icon}
                   </div>
                   <div>
-                    <h3 className="text-base font-semibold text-[#0B0B0F] mb-1.5">{val.title}</h3>
-                    <p className="text-[#475569] text-xs sm:text-sm leading-relaxed">{val.desc}</p>
+                    <h3 className="text-sm sm:text-base font-semibold text-[#0B0B0F] mb-1 sm:mb-1.5 leading-snug">{val.title}</h3>
+                    <p className="text-[#475569] text-[10px] sm:text-sm leading-relaxed">{val.desc}</p>
                   </div>
                 </div>
               </div>

@@ -126,7 +126,7 @@ export default function Portfolio() {
         ========================================================================
       */}
       <section className="py-12 sm:py-14 px-6 sm:px-10 max-w-[1200px] mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {filtered.map((proj, idx) => (
             <div 
               key={idx} 
@@ -188,7 +188,7 @@ export default function Portfolio() {
           <p className="text-[#475569] text-sm">Explore some of our recently deployed client projects and applications.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           <a 
             href="https://dental-clinic-api-henna.vercel.app/" 
             target="_blank" 

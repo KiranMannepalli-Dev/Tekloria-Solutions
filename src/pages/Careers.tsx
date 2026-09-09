@@ -1,4 +1,4 @@
-
+import { useState } from 'react';
 import {
   Rocket,
   BrainCircuit,
@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { CtaSection } from '../components/CtaSection';
 import { ConcentricRipple } from '../components/ConcentricRipple';
+import CardModal from '../components/CardModal';
 
 // ─── Open Roles ──────────────────────────────────────────────────────────────
 const openRoles = [
@@ -93,6 +94,8 @@ const process = [
 ];
 
 export default function Careers() {
+  const [selectedRole, setSelectedRole] = useState<typeof openRoles[0] | null>(null);
+
   return (
     <div className="w-full bg-white text-[#0B0B0F]">
 
@@ -147,21 +150,23 @@ export default function Careers() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {perks.map((perk, idx) => (
               <div
                 key={idx}
-                className="relative overflow-hidden p-6 bg-white border border-[#E5E7EB] rounded-[6px] flex flex-col gap-3 group hover:border-[#EF4444] transition-all duration-300 hover:shadow-sm"
+                className="relative overflow-hidden p-4 sm:p-6 bg-white border border-[#E5E7EB] rounded-[6px] flex flex-col justify-between group hover:border-[#EF4444] transition-all duration-300 hover:shadow-sm"
               >
                 <div className="absolute -right-6 -bottom-6 w-24 h-24 pointer-events-none opacity-0 group-hover:opacity-60 transition-all duration-300 transform group-hover:scale-105">
                   <ConcentricRipple id={`perk-ripple-${idx}`} variant="soft-rose" placement="bottom-right" />
                 </div>
-                <div className="relative z-10 w-10 h-10 rounded-[6px] bg-[#F8FAFC] border border-[#E5E7EB] flex items-center justify-center">
-                  {perk.icon}
-                </div>
-                <div className="relative z-10">
-                  <h3 className="text-base font-semibold text-[#0B0B0F] mb-1">{perk.title}</h3>
-                  <p className="text-[#475569] text-xs sm:text-sm leading-relaxed">{perk.desc}</p>
+                <div className="relative z-10 flex flex-col sm:flex-row items-start gap-2 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-[6px] bg-[#F8FAFC] border border-[#E5E7EB] flex items-center justify-center shrink-0 [&>svg]:w-4 [&>svg]:h-4 sm:[&>svg]:w-5 sm:[&>svg]:h-5">
+                    {perk.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-sm sm:text-base font-semibold text-[#0B0B0F] mb-1 sm:mb-1.5 leading-snug">{perk.title}</h3>
+                    <p className="text-[#475569] text-[10px] sm:text-sm leading-relaxed">{perk.desc}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -185,23 +190,24 @@ export default function Careers() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-5">
           {openRoles.map((role, idx) => (
             <div
               key={idx}
-              className="group relative overflow-hidden p-6 bg-white border border-[#E5E7EB] rounded-[6px] hover:border-[#EF4444] transition-all duration-300 hover:shadow-sm flex flex-col gap-4"
+              onClick={() => setSelectedRole(role)}
+              className="group relative overflow-hidden p-4 sm:p-6 bg-white border border-[#E5E7EB] rounded-[6px] hover:border-[#EF4444] transition-all duration-300 hover:shadow-sm flex flex-col gap-2.5 sm:gap-4 min-h-0 cursor-pointer"
             >
               <div className="absolute -right-8 -bottom-8 w-32 h-32 pointer-events-none opacity-0 group-hover:opacity-50 transition-all duration-300">
                 <ConcentricRipple id={`role-ripple-${idx}`} variant="soft-rose" placement="bottom-right" />
               </div>
 
-              <div className="relative z-10 flex items-start gap-3">
-                <div className="w-10 h-10 rounded-[6px] bg-[#F8FAFC] border border-[#E5E7EB] flex items-center justify-center shrink-0">
+              <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-start gap-2 sm:gap-3">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-[6px] bg-[#F8FAFC] border border-[#E5E7EB] flex items-center justify-center shrink-0 [&>svg]:w-4 [&>svg]:h-4 sm:[&>svg]:w-5 sm:[&>svg]:h-5">
                   {role.icon}
                 </div>
                 <div>
-                  <h3 className="text-base font-semibold text-[#0B0B0F] leading-snug">{role.title}</h3>
-                  <div className="flex flex-wrap items-center gap-3 mt-1.5">
+                  <h3 className="text-sm sm:text-base font-semibold text-[#0B0B0F] leading-snug">{role.title}</h3>
+                  <div className="hidden sm:flex flex-wrap items-center gap-3 mt-1.5">
                     <span className="inline-flex items-center gap-1 text-xs text-[#475569]">
                       <Clock size={11} className="text-[#EF4444]" /> {role.type}
                     </span>
@@ -215,9 +221,9 @@ export default function Careers() {
                 </div>
               </div>
 
-              <p className="relative z-10 text-[#475569] text-sm leading-relaxed">{role.desc}</p>
+              <p className="hidden sm:block relative z-10 text-[#475569] text-[10px] sm:text-sm leading-relaxed line-clamp-3 sm:line-clamp-none">{role.desc}</p>
 
-              <div className="relative z-10 flex flex-wrap gap-2">
+              <div className="hidden sm:flex relative z-10 flex flex-wrap gap-1.5 sm:gap-2">
                 {role.tags.map((tag) => (
                   <span
                     key={tag}
@@ -228,13 +234,19 @@ export default function Careers() {
                 ))}
               </div>
 
-              <div className="relative z-10 pt-1">
+              <div className="relative z-10 mt-auto pt-1 sm:pt-1">
                 <a
                   href={`mailto:contact@tekloria.in?subject=Application: ${encodeURIComponent(role.title)}&body=Hi Tekloria Team,%0A%0AI am interested in applying for the ${encodeURIComponent(role.title)} role.%0A%0APlease find my details below:%0A%0AName:%0AExperience:%0APortfolio / LinkedIn:%0A%0ALooking forward to hearing from you.`}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0B0B0F] hover:text-[#EF4444] transition-colors"
+                  onClick={(e) => e.stopPropagation()}
+                  className="inline-flex items-center gap-1 sm:gap-1.5 text-[9px] sm:text-xs font-semibold text-[#0B0B0F] hover:text-[#EF4444] transition-colors uppercase sm:normal-case tracking-wider sm:tracking-normal"
                 >
-                  Apply for this role <ArrowRight size={13} />
+                  <span className="sm:hidden">Apply</span>
+                  <span className="hidden sm:inline">Apply for this role</span>
+                  <ArrowRight className="w-3 h-3 sm:w-[13px] sm:h-[13px]" />
                 </a>
+                <div className="sm:hidden text-[9px] text-[#475569] mt-3 border-t border-[#E5E7EB]/50 pt-2 text-center uppercase tracking-wider font-medium opacity-60">
+                  Tap to expand
+                </div>
               </div>
             </div>
           ))}
@@ -275,26 +287,25 @@ export default function Careers() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {process.map((step, idx) => (
               <div
                 key={idx}
-                className="relative overflow-hidden p-6 bg-white border border-[#E5E7EB] rounded-[6px] group hover:border-[#EF4444] transition-all duration-300 hover:shadow-sm hover:-translate-y-1"
+                className="relative overflow-hidden p-4 sm:p-6 bg-white border border-[#E5E7EB] rounded-[6px] group hover:border-[#EF4444] transition-all duration-300 hover:shadow-sm hover:-translate-y-1 flex flex-col justify-between"
               >
                 {/* Concentric ripple on hover — matches values / perks cards */}
                 <div className="absolute -right-6 -bottom-6 w-24 h-24 pointer-events-none opacity-0 group-hover:opacity-60 transition-all duration-300 transform group-hover:scale-105">
                   <ConcentricRipple id={`process-ripple-${idx}`} variant="soft-rose" placement="bottom-right" />
                 </div>
 
-                <div className="relative z-10">
-                  {/* Icon + Title inline row */}
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-9 h-9 rounded-[6px] bg-[#F8FAFC] border border-[#E5E7EB] group-hover:border-[#EF4444] flex items-center justify-center shrink-0 transition-colors duration-300">
-                      {step.icon}
-                    </div>
-                    <h3 className="text-sm font-semibold text-[#0B0B0F] leading-snug">{step.title}</h3>
+                <div className="relative z-10 flex flex-col sm:flex-row items-start gap-2 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-[6px] bg-[#F8FAFC] border border-[#E5E7EB] group-hover:border-[#EF4444] flex items-center justify-center shrink-0 transition-colors duration-300 [&>svg]:w-4 [&>svg]:h-4 sm:[&>svg]:w-4 sm:[&>svg]:h-4">
+                    {step.icon}
                   </div>
-                  <p className="text-xs text-[#475569] leading-relaxed">{step.desc}</p>
+                  <div>
+                    <h3 className="text-sm sm:text-base font-semibold text-[#0B0B0F] mb-1 sm:mb-1.5 leading-snug">{step.title}</h3>
+                    <p className="text-[#475569] text-[10px] sm:text-xs leading-relaxed">{step.desc}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -315,6 +326,17 @@ export default function Careers() {
         secondaryButtonText="Learn About Tekloria"
         secondaryButtonLink="/about"
       />
+
+      {/* Mobile Card Modal Overlay */}
+      {selectedRole && (
+        <CardModal
+          title={selectedRole.title}
+          description={selectedRole.desc}
+          icon={selectedRole.icon}
+          tags={selectedRole.tags}
+          onClose={() => setSelectedRole(null)}
+        />
+      )}
     </div>
   );
 }

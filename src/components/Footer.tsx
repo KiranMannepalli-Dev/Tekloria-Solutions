@@ -7,7 +7,7 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="relative overflow-hidden w-full bg-[#0B0B0F] text-white pt-14 pb-8 px-6 sm:px-10 border-t border-white/10">
+      <footer className="relative overflow-hidden w-full bg-[#0B0B0F] text-white pt-10 pb-6 sm:pt-14 sm:pb-8 px-6 sm:px-10 border-t border-white/10">
         {/* Background Monumental Logo Watermark (Exact Navbar Logo Mark: Tekloria® ✻) */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden">
           {/* Subtle Ambient Radial Glow */}
@@ -24,10 +24,10 @@ export default function Footer() {
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-10">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 mb-8 sm:mb-10">
             {/* Brand Info */}
-            <div className="lg:col-span-2">
-              <Link to="/" className="flex items-center gap-2 mb-4 group select-none">
+            <div className="col-span-2 lg:col-span-2">
+              <Link to="/" className="flex items-center gap-2 mb-3 sm:mb-4 group select-none">
                 <span className="font-semibold text-2xl tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
                   Tekloria&reg;
                 </span>
@@ -35,18 +35,18 @@ export default function Footer() {
                   &#10033;
                 </span>
               </Link>
-              <p className="text-white/70 text-sm max-w-sm mb-6 leading-relaxed">
+              <p className="text-white/70 text-sm max-w-sm mb-5 sm:mb-6 leading-relaxed">
                 Custom Web &amp; App Development for Modern Businesses. Transforming ambitious ideas into high-performance software solutions.
               </p>
-              <div className="text-xs text-[#EF4444] font-medium tracking-wider uppercase">
+              <div className="text-[10px] sm:text-xs text-[#EF4444] font-medium tracking-wider uppercase">
                 Ideas &rarr; Code &rarr; Real Solutions
               </div>
             </div>
             
             {/* Services Column */}
-            <div>
-              <h4 className="text-xs uppercase tracking-wider text-white font-semibold mb-4">Services</h4>
-              <ul className="space-y-2.5 text-sm text-white/70">
+            <div className="col-span-1">
+              <h4 className="text-[10px] sm:text-xs uppercase tracking-wider text-white font-semibold mb-3 sm:mb-4">Services</h4>
+              <ul className="space-y-2 sm:space-y-2.5 text-[13px] sm:text-sm text-white/70">
                 <li><Link to="/services" className="hover:text-white transition-colors">Web Development</Link></li>
                 <li><Link to="/services" className="hover:text-white transition-colors">App Development</Link></li>
                 <li><Link to="/services" className="hover:text-white transition-colors">ERP Systems</Link></li>
@@ -57,9 +57,9 @@ export default function Footer() {
             </div>
 
             {/* Company Column */}
-            <div>
-              <h4 className="text-xs uppercase tracking-wider text-white font-semibold mb-4">Company</h4>
-              <ul className="space-y-2.5 text-sm text-white/70">
+            <div className="col-span-1">
+              <h4 className="text-[10px] sm:text-xs uppercase tracking-wider text-white font-semibold mb-3 sm:mb-4">Company</h4>
+              <ul className="space-y-2 sm:space-y-2.5 text-[13px] sm:text-sm text-white/70">
                 <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
                 <li><Link to="/portfolio" className="hover:text-white transition-colors">Portfolio</Link></li>
                 <li><Link to="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
@@ -69,9 +69,9 @@ export default function Footer() {
             </div>
 
             {/* Connect Column */}
-            <div>
-              <h4 className="text-xs uppercase tracking-wider text-white font-semibold mb-4">Connect</h4>
-              <div className="flex items-center gap-4 mb-6">
+            <div className="col-span-2 lg:col-span-1 mt-2 sm:mt-0 pt-6 sm:pt-0 border-t border-white/5 sm:border-t-0">
+              <h4 className="text-[10px] sm:text-xs uppercase tracking-wider text-white font-semibold mb-3 sm:mb-4">Connect</h4>
+              <div className="flex items-center gap-4 mb-5 sm:mb-6">
                 <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-[#EF4444] transition-colors" aria-label="LinkedIn">
                   <svg className="w-[22px] h-[22px] fill-current" viewBox="0 0 24 24">
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
@@ -93,20 +93,20 @@ export default function Footer() {
                   </svg>
                 </a>
               </div>
-              <ul className="space-y-2.5 text-sm text-white/70">
+              <div className="grid grid-cols-2 gap-4 text-sm text-white/70">
                 {/* Email */}
-                <li className="pt-2">
-                  <span className="text-xs text-white/50 block">Email</span>
-                  <a href="mailto:contact@tekloria.in" className="text-sm text-white hover:text-[#EF4444] transition-colors">
+                <div>
+                  <span className="text-[10px] sm:text-xs text-white/50 block mb-0.5">Email</span>
+                  <a href="mailto:contact@tekloria.in" className="text-[12px] sm:text-sm text-white hover:text-[#EF4444] transition-colors break-all">
                     contact@tekloria.in
                   </a>
-                </li>
+                </div>
                 {/* Location */}
-                <li className="pt-1">
-                  <span className="text-xs text-white/50 block">Location</span>
-                  <span className="text-sm text-white/80">Hyderabad, India</span>
-                </li>
-              </ul>
+                <div>
+                  <span className="text-[10px] sm:text-xs text-white/50 block mb-0.5">Location</span>
+                  <span className="text-[12px] sm:text-sm text-white/80">Hyderabad, India</span>
+                </div>
+              </div>
             </div>
           </div>
 

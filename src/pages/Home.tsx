@@ -324,11 +324,11 @@ export default function Home() {
         </div>
 
         {/* 6-Card Grid (design.md #31, #32, #41, #42) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
           {services.map((svc, i) => (
             <div 
               key={i} 
-              className="relative overflow-hidden p-6 bg-white border border-[#E5E7EB] rounded-[6px] transition-all duration-300 hover:border-[#EF4444] hover:shadow-sm flex flex-col justify-between group"
+              className="relative overflow-hidden p-4 sm:p-6 bg-white border border-[#E5E7EB] rounded-[6px] transition-all duration-300 hover:border-[#EF4444] hover:shadow-sm flex flex-col justify-between group"
             >
               {/* Subtle Concentric Ripple Corner Accent on Hover */}
               <div className="absolute -right-8 -bottom-8 w-32 h-32 pointer-events-none opacity-0 group-hover:opacity-75 transition-all duration-300 transform group-hover:scale-110">
@@ -340,23 +340,25 @@ export default function Home() {
               </div>
 
               <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-[6px] bg-[#F8FAFC] flex items-center justify-center border border-[#E5E7EB] shrink-0">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-[6px] bg-[#F8FAFC] flex items-center justify-center border border-[#E5E7EB] shrink-0 [&>svg]:w-4 [&>svg]:h-4 sm:[&>svg]:w-6 sm:[&>svg]:h-6">
                     {svc.icon}
                   </div>
-                  <h3 className="text-lg font-semibold text-[#0B0B0F]">
+                  <h3 className="text-sm sm:text-lg font-semibold text-[#0B0B0F] leading-tight">
                     {svc.title}
                   </h3>
                 </div>
-                <p className="text-[#475569] text-sm leading-relaxed mb-4">
+                <p className="text-[#475569] text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 line-clamp-3 sm:line-clamp-none">
                   {svc.desc}
                 </p>
               </div>
               <Link 
                 to="/services" 
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0B0B0F] group-hover:text-[#EF4444] transition-colors relative z-10"
+                className="inline-flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-xs font-semibold text-[#0B0B0F] group-hover:text-[#EF4444] transition-colors relative z-10 mt-auto uppercase sm:normal-case tracking-wider sm:tracking-normal"
               >
-                Explore service <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
+                <span className="sm:hidden">Explore</span>
+                <span className="hidden sm:inline">Explore service</span>
+                <ArrowRight size={13} className="w-3 h-3 sm:w-[13px] sm:h-[13px] transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
           ))}
@@ -404,31 +406,31 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-5 bg-white border border-[#E5E7EB] rounded-[6px]">
-                <h4 className="text-sm font-semibold text-[#0B0B0F] mb-1.5">Innovative Strategies</h4>
-                <p className="text-[#475569] text-xs sm:text-sm leading-relaxed">
+            <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-4">
+              <div className="p-4 sm:p-5 bg-white border border-[#E5E7EB] rounded-[6px]">
+                <h4 className="text-xs sm:text-sm font-semibold text-[#0B0B0F] mb-1 sm:mb-1.5 leading-tight">Innovative Strategies</h4>
+                <p className="text-[#475569] text-[10px] sm:text-xs md:text-sm leading-relaxed line-clamp-3 sm:line-clamp-none">
                   Tailored solutions engineered specifically for your unique market positioning and user engagement targets.
                 </p>
               </div>
 
-              <div className="p-5 bg-white border border-[#E5E7EB] rounded-[6px]">
-                <h4 className="text-sm font-semibold text-[#0B0B0F] mb-1.5">Multidisciplinary Team</h4>
-                <p className="text-[#475569] text-xs sm:text-sm leading-relaxed">
+              <div className="p-4 sm:p-5 bg-white border border-[#E5E7EB] rounded-[6px]">
+                <h4 className="text-xs sm:text-sm font-semibold text-[#0B0B0F] mb-1 sm:mb-1.5 leading-tight">Multidisciplinary Team</h4>
+                <p className="text-[#475569] text-[10px] sm:text-xs md:text-sm leading-relaxed line-clamp-3 sm:line-clamp-none">
                   From UI/UX creatives to cloud architects, our team works cohesively across every touchpoint.
                 </p>
               </div>
 
-              <div className="p-5 bg-white border border-[#E5E7EB] rounded-[6px]">
-                <h4 className="text-sm font-semibold text-[#0B0B0F] mb-1.5">End-to-End Delivery</h4>
-                <p className="text-[#475569] text-xs sm:text-sm leading-relaxed">
+              <div className="p-4 sm:p-5 bg-white border border-[#E5E7EB] rounded-[6px]">
+                <h4 className="text-xs sm:text-sm font-semibold text-[#0B0B0F] mb-1 sm:mb-1.5 leading-tight">End-to-End Delivery</h4>
+                <p className="text-[#475569] text-[10px] sm:text-xs md:text-sm leading-relaxed line-clamp-3 sm:line-clamp-none">
                   From initial concept wireframing to production deployment and maintenance, we handle the entire product lifecycle.
                 </p>
               </div>
 
-              <div className="p-5 bg-white border border-[#E5E7EB] rounded-[6px]">
-                <h4 className="text-sm font-semibold text-[#0B0B0F] mb-1.5">High Security & Speed</h4>
-                <p className="text-[#475569] text-xs sm:text-sm leading-relaxed">
+              <div className="p-4 sm:p-5 bg-white border border-[#E5E7EB] rounded-[6px]">
+                <h4 className="text-xs sm:text-sm font-semibold text-[#0B0B0F] mb-1 sm:mb-1.5 leading-tight">High Security & Speed</h4>
+                <p className="text-[#475569] text-[10px] sm:text-xs md:text-sm leading-relaxed line-clamp-3 sm:line-clamp-none">
                   Optimized for instant page loads, robust API data protection, and enterprise-grade scalability.
                 </p>
               </div>
@@ -453,22 +455,27 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
           {processSteps.map((step, idx) => (
-            <div key={idx} className="relative overflow-hidden p-6 border border-[#E5E7EB] rounded-[6px] bg-[#FFFFFF] hover:border-[#EF4444] transition-all duration-200 group">
+            <div key={idx} className="relative overflow-hidden p-4 sm:p-6 border border-[#E5E7EB] rounded-[6px] bg-[#FFFFFF] hover:border-[#EF4444] transition-all duration-200 group flex flex-col">
               {/* Mini-target ripple as a subtle corner watermark */}
-              <div className="absolute -right-3 -top-3 w-10 h-10 opacity-20 group-hover:opacity-80 group-hover:scale-110 transition-all duration-300 pointer-events-none">
-                <ConcentricRipple variant="mini-target" id={`process-step-${idx}`} size="sm" />
+              <div className="absolute -right-4 -bottom-4 w-20 h-20 pointer-events-none opacity-0 group-hover:opacity-40 transition-opacity duration-300">
+                <ConcentricRipple 
+                  id={`home-process-${idx}`} 
+                  variant="outline-red" 
+                  placement="bottom-right" 
+                />
               </div>
 
-              {/* Number + Title inline */}
-              <div className="flex items-center gap-2.5 mb-3">
-                <span className="text-xl font-bold text-[#EF4444] leading-none shrink-0" style={{ fontFamily: 'var(--font-display)' }}>
+              <div className="flex flex-col gap-1 sm:gap-2 mb-2 sm:mb-3">
+                <span className="text-lg sm:text-2xl font-bold text-[#E5E7EB] group-hover:text-[#EF4444]/20 transition-colors" style={{ fontFamily: 'var(--font-display)' }}>
                   {step.num}
                 </span>
-                <h3 className="text-base font-semibold text-[#0B0B0F] leading-snug">{step.title}</h3>
+                <h3 className="text-sm sm:text-lg font-semibold text-[#0B0B0F] leading-tight">{step.title}</h3>
               </div>
-              <p className="text-[#475569] text-xs sm:text-sm leading-relaxed">{step.desc}</p>
+              <p className="text-[#475569] text-xs sm:text-sm leading-relaxed line-clamp-3 sm:line-clamp-none">
+                {step.desc}
+              </p>
             </div>
           ))}
         </div>
@@ -488,107 +495,107 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="flex flex-col lg:grid lg:grid-cols-3 gap-4 sm:gap-5">
             {/* Testimonial 1 */}
-            <div className="relative overflow-hidden p-6 bg-white rounded-[6px] border border-[#E5E7EB] flex flex-col justify-between group hover:border-[#EF4444]/40 transition-all duration-300">
-              <div className="absolute -right-6 -bottom-6 w-28 h-28 pointer-events-none opacity-0 group-hover:opacity-45 transition-opacity duration-300">
+            <div className="sticky lg:static top-[100px] z-[1] w-full max-w-3xl lg:max-w-none mx-auto relative overflow-hidden p-4 sm:p-6 bg-white rounded-[6px] border border-[#E5E7EB] flex flex-col justify-between group hover:border-[#EF4444]/40 transition-all duration-300 shadow-sm">
+              <div className="absolute -right-6 -bottom-6 w-32 h-32 pointer-events-none opacity-0 group-hover:opacity-45 transition-opacity duration-300">
                 <ConcentricRipple id="test-1" variant="neutral-sand" placement="bottom-right" />
               </div>
-              <div className="relative z-10 flex items-center justify-between mb-4">
-                <div className="flex gap-1 text-[#FBBC05]">
+              <div className="relative z-10 flex items-center justify-between mb-6">
+                <div className="flex gap-1 sm:gap-1.5 text-[#FBBC05]">
                   {/* 5 Stars */}
                   {[1,2,3,4,5].map(i => (
-                    <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                    <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
                 {/* Google G Logo */}
-                <svg className="w-5 h-5 shrink-0" viewBox="0 0 48 48">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 shrink-0" viewBox="0 0 48 48">
                   <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
                   <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
                   <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
                   <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
                 </svg>
               </div>
-              <p className="text-[#475569] text-xs sm:text-sm leading-relaxed mb-6 relative z-10">
+              <p className="text-[#475569] text-xs sm:text-sm leading-relaxed mb-6 relative z-10 font-medium">
                 "Tekloria's team was amazing to work with. They delivered our custom web platform way ahead of schedule and the UI is incredibly smooth. Highly recommend them for any custom development."
               </p>
               <div className="relative z-10 flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-[#EF4444] text-white flex items-center justify-center font-bold text-sm shrink-0">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#EF4444] text-white flex items-center justify-center font-bold text-sm shrink-0">
                   R
                 </div>
                 <div>
-                  <div className="font-semibold text-sm text-[#0B0B0F]">Rahul Sharma</div>
-                  <div className="text-[11px] text-[#475569]">2 weeks ago</div>
+                  <div className="font-semibold text-base text-[#0B0B0F]">Rahul Sharma</div>
+                  <div className="text-xs text-[#475569]">2 weeks ago</div>
                 </div>
               </div>
             </div>
 
             {/* Testimonial 2 */}
-            <div className="relative overflow-hidden p-6 bg-white rounded-[6px] border border-[#E5E7EB] flex flex-col justify-between group hover:border-[#EF4444]/40 transition-all duration-300">
-              <div className="absolute -right-6 -bottom-6 w-28 h-28 pointer-events-none opacity-0 group-hover:opacity-45 transition-opacity duration-300">
+            <div className="sticky lg:static top-[120px] z-[2] w-full max-w-3xl lg:max-w-none mx-auto relative overflow-hidden p-4 sm:p-6 bg-white rounded-[6px] border border-[#E5E7EB] flex flex-col justify-between group hover:border-[#EF4444]/40 transition-all duration-300 shadow-md lg:shadow-sm">
+              <div className="absolute -right-6 -bottom-6 w-32 h-32 pointer-events-none opacity-0 group-hover:opacity-45 transition-opacity duration-300">
                 <ConcentricRipple id="test-2" variant="neutral-sand" placement="bottom-right" />
               </div>
-              <div className="relative z-10 flex items-center justify-between mb-4">
-                <div className="flex gap-1 text-[#FBBC05]">
+              <div className="relative z-10 flex items-center justify-between mb-6">
+                <div className="flex gap-1 sm:gap-1.5 text-[#FBBC05]">
                   {[1,2,3,4,5].map(i => (
-                    <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                    <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
-                <svg className="w-5 h-5 shrink-0" viewBox="0 0 48 48">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 shrink-0" viewBox="0 0 48 48">
                   <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
                   <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
                   <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
                   <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
                 </svg>
               </div>
-              <p className="text-[#475569] text-xs sm:text-sm leading-relaxed mb-6 relative z-10">
+              <p className="text-[#475569] text-xs sm:text-sm leading-relaxed mb-6 relative z-10 font-medium">
                 "We hired them for a complete rebrand and app development. The entire process was so transparent and the final product exceeded all our expectations. Best tech team in Hyderabad!"
               </p>
               <div className="relative z-10 flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-[#10B981] text-white flex items-center justify-center font-bold text-sm shrink-0">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#10B981] text-white flex items-center justify-center font-bold text-sm shrink-0">
                   P
                 </div>
                 <div>
-                  <div className="font-semibold text-sm text-[#0B0B0F]">Priya Desai</div>
-                  <div className="text-[11px] text-[#475569]">1 month ago</div>
+                  <div className="font-semibold text-base text-[#0B0B0F]">Priya Desai</div>
+                  <div className="text-xs text-[#475569]">1 month ago</div>
                 </div>
               </div>
             </div>
 
             {/* Testimonial 3 */}
-            <div className="relative overflow-hidden p-6 bg-white rounded-[6px] border border-[#E5E7EB] flex flex-col justify-between group hover:border-[#EF4444]/40 transition-all duration-300">
-              <div className="absolute -right-6 -bottom-6 w-28 h-28 pointer-events-none opacity-0 group-hover:opacity-45 transition-opacity duration-300">
+            <div className="sticky lg:static top-[140px] z-[3] w-full max-w-3xl lg:max-w-none mx-auto relative overflow-hidden p-4 sm:p-6 bg-white rounded-[6px] border border-[#E5E7EB] flex flex-col justify-between group hover:border-[#EF4444]/40 transition-all duration-300 shadow-lg lg:shadow-sm">
+              <div className="absolute -right-6 -bottom-6 w-32 h-32 pointer-events-none opacity-0 group-hover:opacity-45 transition-opacity duration-300">
                 <ConcentricRipple id="test-3" variant="neutral-sand" placement="bottom-right" />
               </div>
-              <div className="relative z-10 flex items-center justify-between mb-4">
-                <div className="flex gap-1 text-[#FBBC05]">
+              <div className="relative z-10 flex items-center justify-between mb-6">
+                <div className="flex gap-1 sm:gap-1.5 text-[#FBBC05]">
                   {[1,2,3,4,5].map(i => (
-                    <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                    <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
-                <svg className="w-5 h-5 shrink-0" viewBox="0 0 48 48">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 shrink-0" viewBox="0 0 48 48">
                   <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
                   <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
                   <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
                   <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
                 </svg>
               </div>
-              <p className="text-[#475569] text-xs sm:text-sm leading-relaxed mb-6 relative z-10">
+              <p className="text-[#475569] text-xs sm:text-sm leading-relaxed mb-6 relative z-10 font-medium">
                 "Their custom ERP solution completely transformed how we manage our inventory. Very professional, responsive, and they actually understand business logic, not just coding."
               </p>
               <div className="relative z-10 flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-[#3B82F6] text-white flex items-center justify-center font-bold text-sm shrink-0">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#3B82F6] text-white flex items-center justify-center font-bold text-sm shrink-0">
                   V
                 </div>
                 <div>
-                  <div className="font-semibold text-sm text-[#0B0B0F]">Vikram Reddy</div>
-                  <div className="text-[11px] text-[#475569]">3 months ago</div>
+                  <div className="font-semibold text-base text-[#0B0B0F]">Vikram Reddy</div>
+                  <div className="text-xs text-[#475569]">3 months ago</div>
                 </div>
               </div>
             </div>
